@@ -1,7 +1,7 @@
 function appendToDisplay(value) {
     const display = document.getElementById("display");
     
-    // Обработка квадратного корня
+    
     if (value === '√') {
         const currentValue = display.value ? display.value : '0';
         const result = Math.sqrt(eval(currentValue));
@@ -10,7 +10,7 @@ function appendToDisplay(value) {
         return; 
     }
 
-    // Обработка логарифма
+  
     if (value === 'log') {
         const currentValue = display.value ? display.value : '0';
         const result = Math.log10(eval(currentValue));
@@ -19,7 +19,6 @@ function appendToDisplay(value) {
         return; 
     }
 
-    // Обработка тригонометрических функций
     if (value === 'sin' || value === 'cos' || value === 'tan') {
         const currentValue = display.value ? display.value : '0';
         let result;
@@ -41,7 +40,6 @@ function appendToDisplay(value) {
         return; 
     }
 
-    // Если есть оператор возведения в степень, то добавляем число после него
     if (display.value.includes('**')) {
         const parts = display.value.split('**');
         if (parts.length === 2) { 
@@ -68,31 +66,30 @@ function calculateResult() {
     const display = document.getElementById("display");
     
     try {
-        const result = eval(display.value.replace(/\*\*/g, '^')); // Заменяем '**' на '^'
+        const result = eval(display.value.replace(/\*\*/g, '^')); 
         addHistory(display.value + ' = ' + result);
         display.value = result; 
     } catch (error) { 
         display.value = 'Ошибка'; 
-        setTimeout(clearDisplay, 1500); // Очистить через 1.5 секунды
+        setTimeout(clearDisplay, 1500); 
     }
 }
 
-// Вычисление процентов
+
 function calculatePercentage() { 
     const display = document.getElementById("display");
     
     try { 
-         const currentValue = eval(display.value); // Получаем текущее значение
-         const percentageResult = currentValue / 100; // Вычисляем процент
-         addHistory(`${currentValue} % = ${percentageResult}`); // Добавляем в историю
-         display.value = percentageResult; // Отображаем результат
+         const currentValue = eval(display.value); 
+         const percentageResult = currentValue / 100; 
+         addHistory(`${currentValue} % = ${percentageResult}`);ию
+         display.value = percentageResult; 
      } catch (error) { 
          display.value = 'Ошибка'; 
-         setTimeout(clearDisplay, 1500); // Очистить через 1.5 секунды
+         setTimeout(clearDisplay, 1500); 
      }
 }
 
-// Добавление записи в историю вычислений
 function addHistory(entry) { 
      const historyList = document.getElementById("history");
      
@@ -102,12 +99,11 @@ function addHistory(entry) {
      historyList.appendChild(listItem); 
 }
 
-// Очистка истории вычислений
+
 function clearHistory() {  
      document.getElementById("history").innerHTML = '';  
 }
 
-// Переключение тем
 function toggleTheme() {  
      document.body.classList.toggle("dark-mode");  
 }
